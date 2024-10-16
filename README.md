@@ -12,6 +12,7 @@ The project includes the following key steps:
 4. **Generation**
 5. **Combination of Retrieval and Generation (RAG)**
 6. **Evaluation**
+7. **Streamlit run**
 
 ---
 
@@ -75,6 +76,12 @@ We used the **ROUGE** metric to evaluate the generated responses by comparing th
 
 ---
 
+## 7. Streamlit run
+
+![Streamlit run](https://github.com/user-attachments/assets/10840766-702e-4b46-92f7-a0ea91fae73d)
+
+---
+
 ## Summary
 
 This project demonstrates the following:
@@ -85,12 +92,8 @@ This project demonstrates the following:
 - **Generation Component**: Integrated OpenAI’s GPT-4o-mini model for answer generation.
 - **RAG Model**: Combined retrieval and generation into a single pipeline using Langchain’s `RetrievalQA`.
 - **Evaluation**: Used ROUGE for performance evaluation and comparison against reference answers.
+- **Streamlit**: Ran the .py script in a terminal to tigger the streamlit run.
 
----
-
-## Streamlit run
-
-![Streamlit run](https://github.com/user-attachments/assets/10840766-702e-4b46-92f7-a0ea91fae73d)
 
 
 
