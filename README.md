@@ -86,3 +86,11 @@ This project demonstrates the following:
 - **RAG Model**: Combined retrieval and generation into a single pipeline using Langchain’s `RetrievalQA`.
 - **Evaluation**: Used ROUGE for performance evaluation and comparison against reference answers.
 
+---
+
+## Streamlit run
+
+![Streamlit run](https://github.com/user-attachments/assets/10840766-702e-4b46-92f7-a0ea91fae73d)
+
+
+
