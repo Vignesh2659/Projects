@@ -27,19 +27,6 @@ class GptLLM(LLM):
     def _llm_type(self) -> str:
         return "custom"
 
-# Text cleaning
-def fetch_text_from_url(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Remove unwanted HTML tags
-    for tag in soup(["script", "style"]):
-        tag.decompose()
-
-    # Get text content
-    text = ' '.join([p.get_text() for p in soup.find_all('p')])
-    return text
-
 # Generate a response using the GPT-4o-mini model
 def generate_response(query, retrieved_docs): 
     context = " ".join([doc.page_content for doc in retrieved_docs]) # Combine into a single context
@@ -58,6 +45,19 @@ def generate_response(query, retrieved_docs):
 
     # Extracting the first choice's content from the response
     return response['choices'][0]['message']['content']
+    
+# Text cleaning
+def fetch_text_from_url(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Remove unwanted HTML tags
+    for tag in soup(["script", "style"]):
+        tag.decompose()
+
+    # Get text content
+    text = ' '.join([p.get_text() for p in soup.find_all('p')])
+    return text
     
 # Calculating ROUGE scores for evaluation
 def evaluate_rouge(prediction, reference):
