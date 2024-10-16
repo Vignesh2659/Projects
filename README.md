@@ -92,7 +92,7 @@ This project demonstrates the following:
 - **Generation Component**: Integrated OpenAI’s GPT-4o-mini model for answer generation.
 - **RAG Model**: Combined retrieval and generation into a single pipeline using Langchain’s `RetrievalQA`.
 - **Evaluation**: Used ROUGE for performance evaluation and comparison against reference answers.
-- **Streamlit**: Ran the .py script in a terminal to tigger the streamlit run.
+- **Streamlit**: Ran the .py script in a terminal to trigger the streamlit run.
 
 
 
