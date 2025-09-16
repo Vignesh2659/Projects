@@ -38,16 +38,16 @@ Deterministic values are then retrieved by calling the same Python functions dir
         
 
 2. Model & Chain
-      ```python
-          model_name = "gemini-2.0-flash"
-          model = init_chat_model(model_name, model_provider="google_genai")
-          parser = StrOutputParser()
-          chain1 = prompt_temp | model | parser 
-      ```
+   ```python
+       model_name = "gemini-2.0-flash"
+       model = init_chat_model(model_name, model_provider="google_genai")
+       parser = StrOutputParser()
+       chain1 = prompt_temp | model | parser 
+   ```
 
 ## How to Run ? 
-        out = run_pipeline("Tesla", k=10)  # or "Alphabet Inc", "Apple Inc", etc.
-        print(json.dumps(out, indent=2))
+     out = run_pipeline("Tesla", k=10)  # or "Alphabet Inc", "Apple Inc", etc.
+     print(json.dumps(out, indent=2))
 
 ## What Each Part Does ?
 
