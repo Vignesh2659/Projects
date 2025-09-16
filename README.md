@@ -22,63 +22,73 @@ Deterministic values are then retrieved by calling the same Python functions dir
 ## Setup
 
 ### Python & Packages:
-pip install --upgrade pip
-pip install yfinance requests mlflow
-pip install langchain langchain-core
-pip install langchain-google-genai
-pip install google-genai
+    ```python
+        pip install --upgrade pip
+        pip install yfinance requests mlflow
+        pip install langchain langchain-core
+        pip install langchain-google-genai
+        pip install google-genai
+    ```
 
 ### Configuration:
 1. MLflow Tracking URI & Experiment
-   mlflow.set_tracking_uri("http://20.75.92.162:5000/")
-   mlflow.set_experiment("Vignesh_Assignment_1")
-   Output link - http://20.75.92.162:5000/#/experiments/348087188207124926/runs/45f0f0ed0e1b4147bf1bdce4bc690120
+      ```python
+        mlflow.set_tracking_uri("http://20.75.92.162:5000/")
+        mlflow.set_experiment("Vignesh_Assignment_1")
+        Output link - http://20.75.92.162:5000/#/experiments/348087188207124926/runs/45f0f0ed0e1b4147bf1bdce4bc690120
+      ```
+        
 
 2. Model & Chain
-    model_name = "gemini-2.0-flash"
-    model = init_chat_model(model_name, model_provider="google_genai")
-    parser = StrOutputParser()
-    chain1 = prompt_temp | model | parser 
+      ```python
+          model_name = "gemini-2.0-flash"
+          model = init_chat_model(model_name, model_provider="google_genai")
+          parser = StrOutputParser()
+          chain1 = prompt_temp | model | parser 
+      ```
 
 ## How to Run ? 
-
-out = run_pipeline("Tesla", k=10)  # or "Alphabet Inc", "Apple Inc", etc.
-print(json.dumps(out, indent=2))
+    ```python
+        out = run_pipeline("Tesla", k=10)  # or "Alphabet Inc", "Apple Inc", etc.
+        print(json.dumps(out, indent=2))
+    ```
 
 ## What Each Part Does ?
 
 1. resolve_ticker(company)
-Uses Yahoo Finance HTTP /v1/finance/search to find the ticker; falls back to a small STATIC_TICKERS map.
+        Uses Yahoo Finance HTTP /v1/finance/search to find the ticker; falls back to a small STATIC_TICKERS map.
 
 2. fetch_news_yf(symbol, k)
-Pulls recent headlines via yfinance.Ticker(symbol).news.
+        Pulls recent headlines via yfinance.Ticker(symbol).news.
 
 3. format_headlines_block(items)
-Safely formats/normalizes mixed field types from yfinance into a readable block for the LLM (handles integers/dicts, epoch timestamps, etc.).
+        Safely formats/normalizes mixed field types from yfinance into a readable block for the LLM (handles integers/dicts, epoch timestamps, etc.).
 
 4. Tool calling (generate_response(prompt))
-    Drives automatic function calls for:
-        resolve_ticker → returns ticker
-        fetch_news_yf → returns recent news
-        resolve_ticker → returns ticker
-        fetch_news_yf → returns recent news
+            Drives automatic function calls for:
+                resolve_ticker → returns ticker
+                fetch_news_yf → returns recent news
+                resolve_ticker → returns ticker
+                fetch_news_yf → returns recent news
 
 5. utilize_tools(company_name, k)
-Triggers the tool calls (side-effect) and then retrieves deterministic outputs by calling the same Python functions directly.
-Returns: {"stock_code": ..., "news_items": ...}.
+        Triggers the tool calls (side-effect) and then retrieves deterministic outputs by calling the same Python functions directly.
+        Returns: {"stock_code": ..., "news_items": ...}.
 
 6. run_pipeline(company_name, k)
-    Starts an MLflow run
-    Calls utilize_tools
-    Builds headlines = format_headlines_block(news_items)
-    Executes the LangChain chain prompt_temp | model | parser
-    Parses the LLM output into JSON
-    Logs params, spans, and artifacts to MLflow
-    Returns the final structured JSON
+        Starts an MLflow run
+        Calls utilize_tools
+        Builds headlines = format_headlines_block(news_items)
+        Executes the LangChain chain prompt_temp | model | parser
+        Parses the LLM output into JSON
+        Logs params, spans, and artifacts to MLflow
+        Returns the final structured JSON
 
 ## Sample Command to Run the Chain:
-out = run_pipeline("Alphabet Inc", k=10)
-print(json.dumps(out, indent=2))
+    ```python
+        out = run_pipeline("Alphabet Inc", k=10)
+        print(json.dumps(out, indent=2))
+    ```
 
 ## Sample Output JSON (for Tesla"):
 ```json
