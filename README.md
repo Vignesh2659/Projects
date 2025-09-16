@@ -66,8 +66,6 @@ Deterministic values are then retrieved by calling the same Python functions dir
    Drives automatic function calls for:  
    `resolve_ticker` → returns ticker  
    `fetch_news_yf` → returns recent news  
-   `resolve_ticker` → returns ticker  
-   `fetch_news_yf` → returns recent news
 
 5. `utilize_tools(company_name, k)`  
    Triggers the tool calls (side-effect) and then retrieves deterministic outputs by calling the same Python functions directly.  
