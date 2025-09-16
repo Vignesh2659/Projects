@@ -51,34 +51,35 @@ Deterministic values are then retrieved by calling the same Python functions dir
 
 ## What Each Part Does ?
 
-1. resolve_ticker(company)
-            Uses Yahoo Finance HTTP /v1/finance/search to find the ticker; falls back to a small STATIC_TICKERS map.
+1. `resolve_ticker(company)`  
+   Uses Yahoo Finance HTTP `/v1/finance/search` to find the ticker; falls back to a small `STATIC_TICKERS` map.
 
-2. fetch_news_yf(symbol, k)
-            Pulls recent headlines via yfinance.Ticker(symbol).news.
+2. `fetch_news_yf(symbol, k)`  
+   Pulls recent headlines via `yfinance.Ticker(symbol).news`.
 
-3. format_headlines_block(items)
-            Safely formats/normalizes mixed field types from yfinance into a readable block for the LLM (handles integers/dicts, epoch timestamps, etc.).
+3. `format_headlines_block(items)`  
+   Safely formats/normalizes mixed field types from yfinance into a readable block for the LLM (handles integers/dicts, epoch timestamps, etc.).
 
-4. Tool calling (generate_response(prompt))
-            Drives automatic function calls for:
-            resolve_ticker → returns ticker
-            fetch_news_yf → returns recent news
-            resolve_ticker → returns ticker
-            fetch_news_yf → returns recent news
+4. **Tool calling** – `generate_response(prompt)`  
+   Drives automatic function calls for:  
+   `resolve_ticker` → returns ticker  
+   `fetch_news_yf` → returns recent news  
+   `resolve_ticker` → returns ticker  
+   `fetch_news_yf` → returns recent news
 
-5. utilize_tools(company_name, k)
-            Triggers the tool calls (side-effect) and then retrieves deterministic outputs by calling the same Python functions directly.
-            Returns: {"stock_code": ..., "news_items": ...}.
+5. `utilize_tools(company_name, k)`  
+   Triggers the tool calls (side-effect) and then retrieves deterministic outputs by calling the same Python functions directly.  
+   Returns: `{"stock_code": ..., "news_items": ...}`.
 
-6. run_pipeline(company_name, k)
-            Starts an MLflow run
-            Calls utilize_tools
-            Builds headlines = format_headlines_block(news_items)
-            Executes the LangChain chain prompt_temp | model | parser
-            Parses the LLM output into JSON
-            Logs params, spans, and artifacts to MLflow
-            Returns the final structured JSON
+6. `run_pipeline(company_name, k)`  
+   Starts an MLflow run  
+   Calls `utilize_tools`  
+   Builds `headlines = format_headlines_block(news_items)`  
+   Executes the LangChain chain `prompt_temp | model | parser`  
+   Parses the LLM output into JSON  
+   Logs params, spans, and artifacts to MLflow  
+   Returns the final structured JSON
+
 
 ## Sample Command to Run the Chain:
             out = run_pipeline("Alphabet Inc", k=10)
