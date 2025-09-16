@@ -22,13 +22,11 @@ Deterministic values are then retrieved by calling the same Python functions dir
 ## Setup
 
 ### Python & Packages:
-    ```python
         pip install --upgrade pip
         pip install yfinance requests mlflow
         pip install langchain langchain-core
         pip install langchain-google-genai
         pip install google-genai
-    ```
 
 ### Configuration:
 1. MLflow Tracking URI & Experiment
@@ -66,23 +64,23 @@ Deterministic values are then retrieved by calling the same Python functions dir
 
 4. Tool calling (generate_response(prompt))
             Drives automatic function calls for:
-                resolve_ticker → returns ticker
-                fetch_news_yf → returns recent news
-                resolve_ticker → returns ticker
-                fetch_news_yf → returns recent news
+                1. resolve_ticker → returns ticker
+                2. fetch_news_yf → returns recent news
+                3. resolve_ticker → returns ticker
+                4. fetch_news_yf → returns recent news
 
 5. utilize_tools(company_name, k)
         Triggers the tool calls (side-effect) and then retrieves deterministic outputs by calling the same Python functions directly.
         Returns: {"stock_code": ..., "news_items": ...}.
 
 6. run_pipeline(company_name, k)
-        Starts an MLflow run
-        Calls utilize_tools
-        Builds headlines = format_headlines_block(news_items)
-        Executes the LangChain chain prompt_temp | model | parser
-        Parses the LLM output into JSON
-        Logs params, spans, and artifacts to MLflow
-        Returns the final structured JSON
+        1. Starts an MLflow run
+        2. Calls utilize_tools
+        3. Builds headlines = format_headlines_block(news_items)
+        4. Executes the LangChain chain prompt_temp | model | parser
+        5. Parses the LLM output into JSON
+        6. Logs params, spans, and artifacts to MLflow
+        7. Returns the final structured JSON
 
 ## Sample Command to Run the Chain:
     ```python
