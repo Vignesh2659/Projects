@@ -30,24 +30,26 @@ Deterministic values are then retrieved by calling the same Python functions dir
 
 ### Configuration:
 1. MLflow Tracking URI & Experiment
-      ```python
-        mlflow.set_tracking_uri("http://20.75.92.162:5000/")
-        mlflow.set_experiment("Vignesh_Assignment_1")
-        Output link - http://20.75.92.162:5000/#/experiments/348087188207124926/runs/45f0f0ed0e1b4147bf1bdce4bc690120
-      ```
+```python
+  mlflow.set_tracking_uri("http://20.75.92.162:5000/")
+  mlflow.set_experiment("Vignesh_Assignment_1")
+  Output link - http://20.75.92.162:5000/#/experiments/348087188207124926/runs/45f0f0ed0e1b4147bf1bdce4bc690120
+```
         
 
 2. Model & Chain
-   ```python
-       model_name = "gemini-2.0-flash"
-       model = init_chat_model(model_name, model_provider="google_genai")
-       parser = StrOutputParser()
-       chain1 = prompt_temp | model | parser 
-   ```
+```python
+    model_name = "gemini-2.0-flash"
+    model = init_chat_model(model_name, model_provider="google_genai")
+    parser = StrOutputParser()
+    chain1 = prompt_temp | model | parser 
+```
 
 ## How to Run ? 
-     out = run_pipeline("Tesla", k=10)  # or "Alphabet Inc", "Apple Inc", etc.
-     print(json.dumps(out, indent=2))
+```python
+   out = run_pipeline("Tesla", k=10)  # or "Alphabet Inc", "Apple Inc", etc.
+   print(json.dumps(out, indent=2))
+```
 
 ## What Each Part Does ?
 
