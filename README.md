@@ -7,7 +7,7 @@ This project implements a simple, notebook friendly pipeline that:
 1. Accepts a **company name**  
 2. Resolves the **stock ticker** via **Yahoo Finance HTTP** lookup (with a tiny static fallback)  
 3. Fetches **latest news** for that ticker using **yfinance**  
-4. Analyzes the news with **Gemini 2.0 Flash** via **LangChain** using the exact chain:
+4. Analyzes the news with **Gemini 2.0 Flash** via **LangChain** using the exact chain:  
    chain1 = prompt_temp | model | parser
 5. Logs params, spans, raw news, and the final structured JSON to **MLflow**
 
