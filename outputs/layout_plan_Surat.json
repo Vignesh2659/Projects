@@ -1,0 +1,126 @@
+{
+  "site": {
+    "city": "Surat",
+    "floor_area_sqm": 240.0,
+    "dimensions_m": {
+      "width": 20.0,
+      "height": 12.0
+    },
+    "entry_points": [
+      {
+        "id": "E1",
+        "x": 0.0,
+        "y": 6.0,
+        "width_m": 2.4
+      }
+    ]
+  },
+  "zoning": [
+    {
+      "zone_id": "Z1",
+      "name": "Mobiles",
+      "priority": 1.0,
+      "area_sqm": 120.0,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 10.0,
+        "h": 12.0
+      }
+    },
+    {
+      "zone_id": "Z2",
+      "name": "Appliances",
+      "priority": 0.12,
+      "area_sqm": 30.0,
+      "rect": {
+        "x": 10.0,
+        "y": 0.0,
+        "w": 5.0,
+        "h": 6.0
+      }
+    },
+    {
+      "zone_id": "Z3",
+      "name": "Audio",
+      "priority": 0.03,
+      "area_sqm": 10.0,
+      "rect": {
+        "x": 15.0,
+        "y": 0.0,
+        "w": 5.0,
+        "h": 2.0
+      }
+    },
+    {
+      "zone_id": "Z4",
+      "name": "Corridor",
+      "priority": 0.0,
+      "area_sqm": 80.0,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 20.0,
+        "h": 12.0
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "F1",
+      "zone_id": "Z1",
+      "x": 1.0,
+      "y": 1.0,
+      "w": 2.0,
+      "h": 1.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "fixture_id": "F2",
+      "zone_id": "Z2",
+      "x": 11.0,
+      "y": 1.0,
+      "w": 2.0,
+      "h": 1.0,
+      "rotation_deg": 0.0
+    },
+    {
+      "fixture_id": "F3",
+      "zone_id": "Z3",
+      "x": 16.0,
+      "y": 1.0,
+      "w": 2.0,
+      "h": 1.0,
+      "rotation_deg": 0.0
+    }
+  ],
+  "paths": {
+    "min_corridor_width_m": 1.2,
+    "corridors": [
+      {
+        "x": 2.4,
+        "y": 6.0,
+        "w": 1.2,
+        "h": 6.0
+      }
+    ]
+  },
+  "constraints": {
+    "brand_rules": [],
+    "lease": [],
+    "nbc_accessibility": []
+  },
+  "citations": [
+    {
+      "chunk_id": "probe-vec",
+      "source_document": null,
+      "page": null
+    }
+  ],
+  "compliance_report": {
+    "brand_rules_ok": true,
+    "lease_ok": true,
+    "nbc_ok": true,
+    "violations": []
+  }
+}
